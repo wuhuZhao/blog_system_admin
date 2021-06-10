@@ -10,7 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect } from "react-redux";
-
+import { actionCreators } from "./store"
+import Copyright from "../../components/Copyright";
+import Box from "@material-ui/core/Box";
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -89,8 +91,8 @@ function SignIn(props) {
                         onClick={()=>{
                             HandleLoginAction(username,password)
                             setTimeout(()=>{
-                                if(!userToken) props.history.push("/login")
-                                else props.history.push("/")
+                                if(userToken.length===0) return
+                                props.history.push("/home")
                             },1500)
                         }}
                     >
